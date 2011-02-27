@@ -1,0 +1,23 @@
+<div class="span-u">
+  <% if user.admin? %>
+    <%= link_to "#{user.login} (Administrator)", user %>
+  <% else %>
+    <%= link_to user.login, user %>
+  <% end %>
+</div>
+
+<div class="span-u">
+  <%= user.email %>
+</div>
+
+<div class="span-u last">
+  <% if user.id != 1 && current_user != user %>
+    <%= link_to "Edit", edit_user_path(user) %>
+    | <%= link_to "Delete", user, :method => :delete, :confirm => "You sure?",
+	     						  :title => "Delete #{user.login}" %>
+    <% if current_user.id == 1 %>
+	| <%= link_to "Toggle admin", toggle_user_path(user) %> 
+	<% end %>
+  <% end %>
+</div>
+<br />
