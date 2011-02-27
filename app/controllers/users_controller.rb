@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_filter :authenticate, :only => [:profile, :profile_edit, :password, :update, :destroy, :show, :index]
-  #before_filter :correct_user, :only => [:update]
   before_filter :admin_user,   :only => [:destroy, :show, :edit, :index]
   before_filter :super_admin_user, :only => [:toggle]
   
@@ -29,15 +28,15 @@ class UsersController < ApplicationController
   
   def profile
     @user = current_user
-	@title = "Profile"
-	store_location
+    @title = "Profile"
+    store_location
   end
 	
   def update
     @user = !params[:id].nil? ? User.find(params[:id]) : current_user
-	if @user.update_attributes(params[:user])
+    if @user.update_attributes(params[:user])
 	  flash[:success] = "Profile updated."
-      redirect_back_or profile_path
+	  redirect_back_or profile_path
     else
       @title = "Edit profile"
       render 'edit'
@@ -46,7 +45,7 @@ class UsersController < ApplicationController
   
   def profile_edit
     @user = current_user
-	@title = "Edit profile"
+    @title = "Edit profile"
 	render 'edit'
   end
   
@@ -55,7 +54,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     rescue ActiveRecord::RecordNotFound 
       redirect_to(root_path)
-	end
+    end
     @title = "Edit profile"
   end
   
@@ -87,19 +86,14 @@ class UsersController < ApplicationController
     deny_access unless signed_in?
   end
   
-  #def correct_user
-  #  @user = !params[:id].nil? ? User.find(params[:id]) : current_user
-  #  redirect_to(root_path) unless current_user?(@user)
-  #end
-  
   def admin_user
-      redirect_to(root_path) unless current_user.admin?
+    redirect_to(root_path) unless current_user.admin?
   end
   
   def super_admin_user
     unless current_user.id == 1
-      flash[:error] = "You don't have acces to this function"
-	  redirect_to users_path
-	end
+	  flash[:error] = "You don't have acces to this function"
+      redirect_to users_path
+    end
   end
 end

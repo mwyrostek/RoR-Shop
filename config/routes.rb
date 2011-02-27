@@ -10,11 +10,11 @@ Shop::Application.routes.draw do
   match '/profile', 		:to => 'users#profile'
   match '/profile/edit',	:to => 'users#profile_edit'
   
-  # for admin toggle //p***c!//
+  # for admin toggle //p****c!//
   resources :users do
     member do
-	  put 'toggle'
-	end
+      put 'toggle'
+    end
   end
   match '/users/:id/toggle', :to => 'users#toggle'
   
