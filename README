@@ -1,0 +1,4 @@
+# Ruby on Rails Online Store or simple RoR Shop
+
+1. Type "bundle_install" in rails console in app dir (needed internet connection).
+2. Type "rails server".
