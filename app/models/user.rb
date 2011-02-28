@@ -68,7 +68,6 @@ class User < ActiveRecord::Base
   end
   
   def password_required? 
-      hashed_password.blank? || password.present? 
+    hashed_password.blank? || password.present? 
   end 
-  
 end

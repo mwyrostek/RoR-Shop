@@ -11,9 +11,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-	  sign_in @user
-	  flash[:success] = "Welcome to the RoR Shop!"
-	  redirect_to profile_path
+      sign_in @user
+      flash[:success] = "Welcome to the RoR Shop!"
+      redirect_to profile_path
     else
       @title = "Sign up"
       render 'new'
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   def index
     @title = "All users"
     @users = User.all
-	store_location
+    store_location
   end
   
   def profile
@@ -31,12 +31,12 @@ class UsersController < ApplicationController
     @title = "Profile"
     store_location
   end
-	
+    
   def update
     @user = !params[:id].nil? ? User.find(params[:id]) : current_user
     if @user.update_attributes(params[:user])
-	  flash[:success] = "Profile updated."
-	  redirect_back_or profile_path
+      flash[:success] = "Profile updated."
+      redirect_back_or profile_path
     else
       @title = "Edit profile"
       render 'edit'
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   def profile_edit
     @user = current_user
     @title = "Edit profile"
-	render 'edit'
+    render 'edit'
   end
   
   def edit
@@ -63,9 +63,9 @@ class UsersController < ApplicationController
       @user = User.find(params[:id]) 
     rescue ActiveRecord::RecordNotFound 
       redirect_to root_path
-	end
+    end
     @title = "Show user"
-	store_location
+    store_location
   end
   
   def destroy
@@ -76,13 +76,13 @@ class UsersController < ApplicationController
   
   def toggle
     if (params[:id] == '1')
-	  flash[:error] = "You can't do that."
-	  redirect_to root_path
-	else
+      flash[:error] = "You can't do that."
+      redirect_to root_path
+    else
       User.find(params[:id]).toggle!(:admin)
       flash[:success] = "Restrictions updated."
       redirect_to users_path
-	end
+    end
   end
   
   private
@@ -97,7 +97,7 @@ class UsersController < ApplicationController
   
   def super_admin_user
     unless current_user.id == 1
-	  flash[:error] = "You don't have acces to this function"
+      flash[:error] = "You don't have acces to this function"
       redirect_to users_path
     end
   end
