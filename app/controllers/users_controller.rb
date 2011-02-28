@@ -50,12 +50,17 @@ class UsersController < ApplicationController
   end
   
   def edit
-    begin 
-      @user = User.find(params[:id])
-    rescue ActiveRecord::RecordNotFound 
-      redirect_to root_path
-    end
-    @title = "Edit profile"
+    if (params[:id] == '1')
+      flash[:error] = "You can't do that."
+	  redirect_to root_path
+    else
+      begin 
+        @user = User.find(params[:id])
+      rescue ActiveRecord::RecordNotFound 
+        redirect_to root_path
+      end
+	end
+      @title = "Edit profile"
   end
   
   def show
@@ -69,9 +74,13 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "User deleted."
-    redirect_to users_path
+    if (params[:id] == '1')
+      flash[:error] = "You can't do that."
+    else
+      User.find(params[:id]).destroy
+      flash[:success] = "User deleted."
+	end
+	redirect_to users_path
   end
   
   def toggle
