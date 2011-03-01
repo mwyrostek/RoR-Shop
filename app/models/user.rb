@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   
   attr_protected :id, :salt
   attr_accessor :password
-  attr_accessible :login, :email, :password
+  attr_accessible :login, :email, :password, :password_confirmation
   
   before_save :encrypt_password
   
