@@ -1,22 +1,30 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, :only => [:profile, :profile_edit, :password, :update, :destroy, :show, :index]
-  before_filter :admin_user,   :only => [:destroy, :show, :edit, :index]
+  before_filter :authenticate, :only => [:profile, :profile_edit, :update]
+  before_filter :admin_user,   :only => [:destroy, :edit, :index, :new, :show]
   before_filter :super_admin_user, :only => [:toggle]
   
-  def new
+  def signup
+    redirect_to root_path, :alert => "You can't sign up twice" unless !signed_in?
     @user = User.new
     @title = "Sign up"
   end
   
+  def new
+    @user = User.new
+    @title = "New user"
+  end
+
   def create
-    @user = User.new(params[:user])
+    @user = User.new(params[:user])  
     if @user.save
-      sign_in @user
-      flash[:success] = "Welcome to the RoR Shop!"
-      redirect_to profile_path
+        flash[:success] = "Account created."
+        redirect_back_or root_path
+    elsif current_user.admin?
+      @title = "New user"
+      render 'new'
     else
       @title = "Sign up"
-      render 'new'
+      render 'signup'
     end
   end
   
@@ -52,7 +60,7 @@ class UsersController < ApplicationController
   def edit
     if (params[:id] == '1')
       flash[:error] = "You can't do that."
-	  redirect_to root_path
+      redirect_to root_path
     else
       begin 
         @user = User.find(params[:id])
@@ -60,7 +68,7 @@ class UsersController < ApplicationController
         redirect_to root_path
       end
 	end
-      @title = "Edit profile"
+    @title = "Edit profile"
   end
   
   def show
@@ -101,6 +109,7 @@ class UsersController < ApplicationController
   end
   
   def admin_user
+    deny_access unless signed_in?
     redirect_to(root_path) unless current_user.admin?
   end
   

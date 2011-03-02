@@ -4,7 +4,7 @@ Shop::Application.routes.draw do
  
   root 						:to => "pages#home"
   match '/about',   		:to => 'pages#about'
-  match '/signup',  		:to => 'users#new'
+  match '/signup',  		:to => 'users#signup'
   match '/signin',  		:to => 'sessions#new'
   match '/signout', 		:to => 'sessions#destroy'
   match '/profile', 		:to => 'users#profile'
@@ -13,7 +13,7 @@ Shop::Application.routes.draw do
   # for admin toggle //p****c!//
   resources :users do
     member do
-      put 'toggle'
+      post 'toggle'
     end
   end
   match '/users/:id/toggle', :to => 'users#toggle'
