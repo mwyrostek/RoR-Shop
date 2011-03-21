@@ -101,22 +101,4 @@ class UsersController < ApplicationController
       redirect_to users_path
     end
   end
-  
-  private
-
-  def authenticate
-    deny_access unless signed_in?
-  end
-  
-  def admin_user
-    deny_access unless signed_in?
-    redirect_to(root_path) unless current_user.admin?
-  end
-  
-  def super_admin_user
-    unless current_user.id == 1
-      flash[:error] = "You don't have acces to this function"
-      redirect_to users_path
-    end
-  end
 end
