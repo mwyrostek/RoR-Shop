@@ -1,20 +1,14 @@
-<p id="notice"><%= notice %></p>
+<% unless @category.children.empty? %>
+<ul id="subcat">
+  <% for category in @category.children %>
+    <li><%= link_to h(category.name), category %></li>
+  <% end %>
+</ul>
+<% end %>
 
-<p>
-  <b>Title:</b>
-  <%= @category.title %>
+<p>&gt;
+<% for category in @category.ancestors.reverse %>
+  <%= link_to h(category.name), category %> &gt;
+<% end %>
+<%= @category.name %>
 </p>
-
-<p>
-  <b>Level:</b>
-  <%= @category.level %>
-</p>
-
-<p>
-  <b>Ancestor:</b>
-  <%= @category.ancestor %>
-</p>
-
-
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>

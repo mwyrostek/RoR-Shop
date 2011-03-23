@@ -17,8 +17,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])  
     if @user.save
-        flash[:success] = "Account created."
-        redirect_back_or root_path
+      flash[:success] = "Account created."
+      redirect_back_or root_path
     elsif current_user.admin?
       @title = "New user"
       render 'new'

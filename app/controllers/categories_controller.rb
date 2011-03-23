@@ -1,6 +1,4 @@
 class CategoriesController < ApplicationController
-  before_filter :authenticate
-
   # GET /categories
   def index
     @categories = Category.all
@@ -9,6 +7,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   def show
     @category = Category.find(params[:id])
+    @title = @category.name
   end
 
   # GET /categories/new
@@ -25,7 +24,7 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(params[:category])
     if @category.save
-      redirect_to(@category, :notice => 'Category was successfully created.')
+      redirect_to categories_path, :notice => 'Category was successfully created.'
     else
       render :action => "new"
     end
@@ -46,5 +45,9 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @category.destroy
     redirect_to(categories_url)
+  end
+  
+  def tree
+    @title = "Category Tree"
   end
 end
