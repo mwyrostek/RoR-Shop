@@ -1,9 +1,0 @@
-one:
-  name: MyString
-  price: 9.99
-  released_at: 2008-05-13 20:24:58
-
-two:
-  name: MyString
-  price: 9.99
-  released_at: 2008-05-13 20:24:58

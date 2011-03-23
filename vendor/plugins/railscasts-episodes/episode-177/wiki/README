@@ -1,4 +1,0 @@
-Example Wiki App
-
-  rake db:migrate
-  script/server

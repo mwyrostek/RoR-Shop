@@ -1,9 +1,0 @@
-Railscasts Episode #236: OmniAuth Part 2
-
-http://railscasts.com/episodes/236
-
-Commands
-
-  bundle update
-  rails g controller registrations
-  rails g devise:views

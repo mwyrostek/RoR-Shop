@@ -1,9 +1,0 @@
-one:
-  project_id: MyString
-  name: MyString
-  completed: false
-
-two:
-  project_id: MyString
-  name: MyString
-  completed: false

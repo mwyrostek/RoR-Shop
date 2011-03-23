@@ -1,4 +1,0 @@
-tmp/**/*
-log/*.log
-*.sqlite3
-public/system

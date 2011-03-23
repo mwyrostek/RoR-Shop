@@ -1,7 +1,0 @@
-Railscasts Episode #121: Non Active Record Model
-
-http://railscasts.com/episodes/121
-
-Commands
-
-  script/generate controller letters index show

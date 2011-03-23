@@ -1,8 +1,6 @@
 Shop::Application.routes.draw do 
   resources :items
-
   resources :categories
-
   resources :users
   resources :sessions, 		:only => [:new, :create, :destroy]
  
