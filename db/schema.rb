@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20110323183145) do
   create_table "items", :force => true do |t|
     t.integer  "category_id"
     t.string   "name"
-    t.string   "description"
+    t.text     "description"
     t.decimal  "cost"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -2,7 +2,7 @@
 
 <p>
   <b>Category:</b>
-  <%= @item.category_id %>
+  <%= full_category(@item.category_id) %>
 </p>
 
 <p>
@@ -17,9 +17,11 @@
 
 <p>
   <b>Cost:</b>
-  <%= @item.cost %>
+  &#36;<%= @item.cost %>
 </p>
 
-
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<% if current_user.admin? %>
+  <%= link_to 'Edit', edit_item_path(@item) %> |
+  <%= link_to 'Destroy', @item, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to 'All Items', items_path %>  
+<% end %>

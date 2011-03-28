@@ -1,14 +1,17 @@
-<% unless @category.children.empty? %>
-<ul id="subcat">
-  <% for category in @category.children %>
-    <li><%= link_to h(category.name), category %></li>
-  <% end %>
-</ul>
-<% end %>
+<%= full_category(@category) %><br />
 
-<p>&gt;
-<% for category in @category.ancestors.reverse %>
-  <%= link_to h(category.name), category %> &gt;
+<% unless @category.children.empty? %>
+  <br /> | 
+  <% @category.children.each do |child| %>
+    <%= link_to h(child.name), child %> |
+  <% end %>
+  <br />
 <% end %>
-<%= @category.name %>
-</p>
+<br />
+
+<ul><%= category_items(@category) %></ul>
+
+<div class="field">
+  <%= link_to 'New Item', newitem_path(@category.id) %> |
+  <%= link_to "Edit Category", edit_category_path(@category) %><br />
+</div>

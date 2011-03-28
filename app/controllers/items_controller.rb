@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_filter :admin_user, :only => [:destroy, :edit, :index, :new]
+  
   # GET /items
   def index
     @items = Item.all
@@ -12,6 +14,7 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     @item = Item.new
+    @item.category_id = params[:id]
   end
 
   # GET /items/1/edit
@@ -22,7 +25,6 @@ class ItemsController < ApplicationController
   # POST /items
   def create
     @item = Item.new(params[:item])
-
     if @item.save
       redirect_to(@item, :notice => 'Item was successfully created.')
     else

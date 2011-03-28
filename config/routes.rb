@@ -4,7 +4,7 @@ Shop::Application.routes.draw do
   resources :users
   resources :sessions, 		:only => [:new, :create, :destroy]
  
-  root 						:to => "pages#home"
+  root 						        :to => "pages#home"
   match '/about',   		  :to => 'pages#about'
   match '/signup',  		  :to => 'users#signup'
   match '/signin',  		  :to => 'sessions#new'
@@ -12,6 +12,7 @@ Shop::Application.routes.draw do
   match '/profile', 		  :to => 'users#profile'
   match '/profile/edit',	:to => 'users#profile_edit'
   match '/tree/',         :to => 'categories#tree'
+  match '/items/new/:id', :to => 'items#new', :as => 'newitem'
   
   # for admin toggle //p****c!//
   resources :users do

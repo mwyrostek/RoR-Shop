@@ -4,7 +4,6 @@
   <tr>
     <th>Category</th>
     <th>Name</th>
-    <th>Description</th>
     <th>Cost</th>
     <th></th>
     <th></th>
@@ -15,8 +14,7 @@
   <tr>
     <td><%= item.category_id %></td>
     <td><%= item.name %></td>
-    <td><%= item.description %></td>
-    <td><%= item.cost %></td>
+    <td>&#36;<%= item.cost %></td>
     <td><%= link_to 'Show', item %></td>
     <td><%= link_to 'Edit', edit_item_path(item) %></td>
     <td><%= link_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete %></td>
