@@ -1,20 +1,17 @@
-<p id="notice"><%= notice %></p>
+<%= full_category(@category) %><br />
 
-<p>
-  <b>Title:</b>
-  <%= @category.title %>
-</p>
+<% unless @category.children.empty? %>
+  <br /> | 
+  <% @category.children.each do |child| %>
+    <%= link_to h(child.name), child %> |
+  <% end %>
+  <br />
+<% end %>
+<br />
 
-<p>
-  <b>Level:</b>
-  <%= @category.level %>
-</p>
+<ul><%= category_items(@category) %></ul>
 
-<p>
-  <b>Ancestor:</b>
-  <%= @category.ancestor %>
-</p>
-
-
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<div class="field">
+  <%= link_to 'New Item', newitem_path(@category.id) %> |
+  <%= link_to "Edit Category", edit_category_path(@category) %><br />
+</div>

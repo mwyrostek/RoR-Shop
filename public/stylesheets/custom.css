@@ -20,6 +20,7 @@ section {
   font-size: 120%;
   padding: 20px;
   background: #fff;
+  float: none;
 }
 
 section h1 {
@@ -50,6 +51,11 @@ nav {
   white-space: nowrap;
 }
 
+nav hr {
+  line-height: 1px; 
+  font-size: 1px;
+}
+
 nav ul {
   margin: 0;
   padding: 0;
@@ -61,7 +67,7 @@ nav ul li {
   padding: 0.2em 0;
 }
 
-nav ul li a {
+nav ul li {
   padding: 0 5px;
   font-weight: bold;
 }
@@ -163,4 +169,16 @@ ul.users {
   width: 210px;
   float: left;
   margin-right: 10px;
+}
+
+.subcat {
+}
+
+/* Items in Category */
+.item {
+  width: 190px;
+  float: left;
+  margin: 5px;
+  border: 1px solid black;
+  padding: 10px;
 }

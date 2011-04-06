@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Category:</b>
+  <%= full_category(@item.category_id) %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @item.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @item.description %>
+</p>
+
+<p>
+  <b>Cost:</b>
+  &#36;<%= @item.cost %>
+</p>
+
+<% if current_user.admin? %>
+  <%= link_to 'Edit', edit_item_path(@item) %> |
+  <%= link_to 'Destroy', @item, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to 'All Items', items_path %>  
+<% end %>

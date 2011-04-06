@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_filter :authenticate
+  before_filter :admin_user, :only => [:destroy, :edit, :index, :new]
 
   # GET /categories
   def index
@@ -9,6 +9,8 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   def show
     @category = Category.find(params[:id])
+    @title = @category.name
+    store_location
   end
 
   # GET /categories/new
@@ -25,7 +27,7 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(params[:category])
     if @category.save
-      redirect_to(@category, :notice => 'Category was successfully created.')
+      redirect_to categories_path, :notice => 'Category was successfully created.'
     else
       render :action => "new"
     end
@@ -44,7 +46,32 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1
   def destroy
     @category = Category.find(params[:id])
+    move_items(@category)
     @category.destroy
+    flash[:success] = "Category deleted."
     redirect_to(categories_url)
+  end
+  
+  def tree
+    @title = "Category Tree"
+  end
+  
+  private
+  
+   def move_items(from)
+    begin 
+      to = Category.find_by_name!("Others").id
+    rescue ActiveRecord::RecordNotFound
+      to = ''
+    end
+    from.items.each do |item|
+      item.category_id = to
+      item.save
+    end
+    unless from.children.empty?
+      from.children.each do |child|
+        move_items(child)
+      end
+    end
   end
 end
