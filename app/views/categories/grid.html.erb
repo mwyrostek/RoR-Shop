@@ -1,0 +1,11 @@
+<%=raw jqgrid("Listing categories", "categories", "/categories", 
+[ 
+   
+  { :field => "id", :label => "id" }, 
+   
+  { :field => "parent_id", :label => "parent_id" }, 
+   
+  { :field => "name", :label => "name" } 
+   
+  ] , {:autowidth=>true} 
+  ) %>

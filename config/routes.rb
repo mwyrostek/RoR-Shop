@@ -13,6 +13,7 @@ Shop::Application.routes.draw do
   match '/profile/edit',	:to => 'users#profile_edit'
   match '/tree/',         :to => 'categories#tree'
   match '/items/new/:id', :to => 'items#new', :as => 'newitem'
+  match '/grid/',         :to => 'categories#grid'
   
   # for admin toggle //p****c!//
   resources :users do
@@ -22,6 +23,11 @@ Shop::Application.routes.draw do
   end
   match '/users/:id/toggle', :to => 'users#toggle'
   
+  resources :categories, :only => [:grid] do
+    collection do
+      post "post_data"
+    end
+  end
   
 
   # The priority is based upon order of creation:
