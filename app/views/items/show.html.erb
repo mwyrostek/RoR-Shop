@@ -23,9 +23,10 @@
   <b>Cost:</b>
   &#36;<%= @item.cost %>
 </p>
-
-<% if current_user.admin? %>
-  <%= link_to 'Edit', edit_item_path(@item) %> |
-  <%= link_to 'Destroy', @item, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to 'All Items', items_path %>  
+<% if signed_in? %>
+  <% if current_user.admin? %>
+    <%= link_to 'Edit', edit_item_path(@item) %> |
+    <%= link_to 'Destroy', @item, :confirm => 'Are you sure?', :method => :delete %> |
+    <%= link_to 'All Items', items_path %>  
+  <% end %>
 <% end %>

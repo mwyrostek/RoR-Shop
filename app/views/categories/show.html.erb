@@ -10,8 +10,11 @@
 <br />
 
 <ul><%= category_items(@category) %></ul>
-
-<div class="field">
-  <%= link_to 'New Item', newitem_path(@category.id) %> |
-  <%= link_to "Edit Category", edit_category_path(@category) %><br />
-</div>
+<% if signed_in? %>
+  <% if current_user.admin? %>
+    <div class="field">
+	  <%= link_to 'New Item', newitem_path(@category.id) %> |
+      <%= link_to "Edit Category", edit_category_path(@category) %><br />
+    </div>
+  <% end %>
+<% end %>

@@ -17,8 +17,8 @@ class Item < ActiveRecord::Base
   has_attached_file :image,
                     :default_url => "/images/missing.png",
                     :styles => { :small => "150x150>", :medium => "400x400" },
-                    :url => "/assets/products/:id/:style/:basename.:extension",
-                    :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension"
+                    :url => "/assets/items/:id/:style/:basename.:extension",
+                    :path => ":rails_root/public/assets/items/:id/:style/:basename.:extension"
                     
   before_validation :clear_image
   
