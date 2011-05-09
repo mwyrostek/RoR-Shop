@@ -15,7 +15,6 @@ Shop::Application.routes.draw do
   match '/items/new/:id', :to => 'items#new', :as => 'newitem'
   match '/grid/',         :to => 'categories#grid'
   
-  # for admin toggle //p****c!//
   resources :users do
     member do
       post 'toggle'
